@@ -302,13 +302,13 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as session:
     gen_cost = tf.add_n(gen_costs) / len(DEVICES)
     disc_cost = tf.add_n(disc_costs) / len(DEVICES)
             
-    gen_train_op = tf.train.AdamOptimizer(learning_rate=1e-4, beta1=0.5, beta2=0.9).minimize(gen_cost,
+    gen_train_op = tf.compat.v1.train.AdamOptimizer(learning_rate=1e-4, beta1=0.5, beta2=0.9).minimize(gen_cost,
                                                                                              var_list=lib.params_with_name('Generator'),
                                                                                              colocate_gradients_with_ops=True)
-    disc_train_op = tf.train.AdamOptimizer(learning_rate=1e-4, beta1=0.5, beta2=0.9).minimize(disc_cost,
+    disc_train_op = tf.compat.v1.train.AdamOptimizer(learning_rate=1e-4, beta1=0.5, beta2=0.9).minimize(disc_cost,
                                                                                               var_list=lib.params_with_name('Discriminator.'),
                                                                                               colocate_gradients_with_ops=True)
-    class_train_op =  tf.train.AdamOptimizer(learning_rate=1e-4, beta1=0.5, beta2=0.9).minimize(real_class_cost_gradient,
+    class_train_op =  tf.compat.v1.train.AdamOptimizer(learning_rate=1e-4, beta1=0.5, beta2=0.9).minimize(real_class_cost_gradient,
                                                                                                 var_list=lib.params_with_name('Discriminator.'),
                                                                                                 colocate_gradients_with_ops=True)
     # For generating samples
