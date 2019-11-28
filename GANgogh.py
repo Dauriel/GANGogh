@@ -281,7 +281,7 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as session:
             gen_cost += generated_class_cost
             disc_cost += real_class_cost
                 
-            alpha = tf.random_uniform(
+            alpha = tf.random.uniform(
                 shape=[BATCH_SIZE//len(DEVICES),1], 
                 minval=0.,
                 maxval=1.
