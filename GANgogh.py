@@ -272,11 +272,11 @@ with tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(allow_soft_placement=T
             gen_cost_test = -tf.reduce_mean(disc_fake)
             disc_cost_test = tf.reduce_mean(disc_fake) - tf.reduce_mean(disc_real)
                                                                                      
-            generated_class_cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=disc_fake_class,
+            generated_class_cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=disc_fake_class,
                                                                                               labels=fake_labels))
             
 
-            real_class_cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=disc_real_class,
+            real_class_cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=disc_real_class,
                                                                                               labels=real_labels))
             gen_cost += generated_class_cost
             disc_cost += real_class_cost
