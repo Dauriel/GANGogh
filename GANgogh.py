@@ -122,7 +122,7 @@ def kACGANGenerator(n_samples, numClasses, labels, noise=None, dim=DIM, bn=True,
     lib.ops.deconv2d.set_weights_stdev(0.02)
     lib.ops.linear.set_weights_stdev(0.02)
     if noise is None:
-        noise = tf.random_normal([n_samples, 128])
+        noise = tf.random.normal([n_samples, 128])
 
     labels = tf.cast(labels, tf.float32)        
     noise = tf.concat([noise, labels], 1)
@@ -221,11 +221,11 @@ Generator, Discriminator = GeneratorAndDiscriminator()
             
 with tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(allow_soft_placement=True)) as session:
 
-    all_real_data_conv = tf.placeholder(tf.int32, shape=[BATCH_SIZE, 3, 64, 64])
-    all_real_label_conv = tf.placeholder(tf.int32, shape=[BATCH_SIZE,CLASSES])
+    all_real_data_conv = tf.compat.v1.placeholder(tf.int32, shape=[BATCH_SIZE, 3, 64, 64])
+    all_real_label_conv = tf.compat.v1.placeholder(tf.int32, shape=[BATCH_SIZE,CLASSES])
     
-    generated_labels_conv = tf.placeholder(tf.int32, shape=[BATCH_SIZE,CLASSES])
-    sample_labels_conv = tf.placeholder(tf.int32, shape=[BATCH_SIZE,CLASSES])
+    generated_labels_conv = tf.compat.v1.placeholder(tf.int32, shape=[BATCH_SIZE,CLASSES])
+    sample_labels_conv = tf.compat.v1.placeholder(tf.int32, shape=[BATCH_SIZE,CLASSES])
     
     if tf.__version__.startswith('1.'):
         split_real_data_conv = tf.split(all_real_data_conv, len(DEVICES))
