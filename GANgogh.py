@@ -361,7 +361,7 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as session:
         _data, _labels = next(gen)
         _ , accuracy = session.run([disc_train_op, realAccuracy],feed_dict = {all_real_data_conv: _data, all_real_label_conv: _labels, generated_labels_conv: genRandomLabels(BATCH_SIZE, CLASSES)})
         if iterp % 100 == 99:
-            print('pretraining accuracy: ' + str(accuracy))
+            print("it: " + iterp + 'pretraining accuracy: ' + str(accuracy))
     
             
     for iteration in range(ITERS):
