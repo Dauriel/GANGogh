@@ -354,7 +354,7 @@ with tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(allow_soft_placement=T
 
 
 
-    session.run(tf.global_variables_initializer(), feed_dict={generated_labels_conv: genRandomLabels(BATCH_SIZE,CLASSES)})
+    session.run(tf.compat.v1.global_variables_initializer(), feed_dict={generated_labels_conv: genRandomLabels(BATCH_SIZE,CLASSES)})
     gen = train_gen()
     
     for iterp in range(PREITERATIONS):
